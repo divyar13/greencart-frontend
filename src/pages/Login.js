@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axiosInstance from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // import styles
+import "./Login.css";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,6 +18,7 @@ function Login() {
         password,
       });
       localStorage.setItem("token", res.data.token);
+      setIsLoggedIn(true); // 🔹 update state so Navbar shows instantly
       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.msg || "Login failed");

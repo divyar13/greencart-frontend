@@ -1,10 +1,5 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import SimulationForm from "./pages/SimulationForm";
@@ -13,23 +8,25 @@ import RoutesPage from "./pages/Routes";
 import Orders from "./pages/Orders";
 import Navbar from "./components/Navbar";
 
-function PrivateRoute({ children }) {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/" />;
+// Wrapper for protected routes
+function PrivateRoute({ children, isLoggedIn }) {
+  return isLoggedIn ? children : <Navigate to="/" />;
 }
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem("token");
+  // Track login status in state, initialized from localStorage
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   return (
     <>
-      {isLoggedIn && <Navbar />} {/* Navbar now always shows when logged in */}
+      {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+
         <Route
           path="/dashboard"
           element={
-            <PrivateRoute>
+            <PrivateRoute isLoggedIn={isLoggedIn}>
               <Dashboard />
             </PrivateRoute>
           }
@@ -37,7 +34,7 @@ function App() {
         <Route
           path="/simulation"
           element={
-            <PrivateRoute>
+            <PrivateRoute isLoggedIn={isLoggedIn}>
               <SimulationForm />
             </PrivateRoute>
           }
@@ -45,7 +42,7 @@ function App() {
         <Route
           path="/drivers"
           element={
-            <PrivateRoute>
+            <PrivateRoute isLoggedIn={isLoggedIn}>
               <Drivers />
             </PrivateRoute>
           }
@@ -53,7 +50,7 @@ function App() {
         <Route
           path="/routes"
           element={
-            <PrivateRoute>
+            <PrivateRoute isLoggedIn={isLoggedIn}>
               <RoutesPage />
             </PrivateRoute>
           }
@@ -61,7 +58,7 @@ function App() {
         <Route
           path="/orders"
           element={
-            <PrivateRoute>
+            <PrivateRoute isLoggedIn={isLoggedIn}>
               <Orders />
             </PrivateRoute>
           }
