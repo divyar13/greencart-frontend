@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api"; // Replace with your backend URL
+const API_BASE_URL = "https://greencart-backend-nu7c.vercel.app/api"; // Replace with your backend URL
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
