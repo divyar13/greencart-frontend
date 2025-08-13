@@ -1,0 +1,120 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Left section - logo & links */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #43cea2, #1e88e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: linear-gradient(90deg, #43cea2, #1e88e5);
+  color: white;
+  box-shadow: 0 3px 12px rgba(30, 136, 229, 0.5);
+}
+
+/* Right section - logout button */
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #ef5350, #e53935);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* prevents wrapping */
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, #e53935, #ef5350);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(239, 83, 80, 0.5);
+}
+
+/* ===== MOBILE MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* stack logo + links + button */
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+
+  .nav-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Even smaller screen adjustments */
+@media (max-width: 480px) {
+  .nav-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}

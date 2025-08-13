@@ -1,0 +1,108 @@
+/* Dashboard layout */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 1rem 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  animation: fadeInDashboard 0.8s ease;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #1e88e5;
+  margin-bottom: 20px;
+  user-select: none;
+  text-shadow: 1px 1px 3px rgba(30, 136, 229, 0.5);
+}
+
+.refresh-btn {
+  display: block;
+  margin: 0 auto 30px auto;
+  padding: 12px 26px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background-image: linear-gradient(90deg, #43cea2, #1e88e5);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(30, 136, 229, 0.4);
+  transition: background-position 0.4s ease, transform 0.25s ease;
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  user-select: none;
+}
+
+.refresh-btn:hover {
+  background-position: 100% 0%;
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(30, 136, 229, 0.6);
+}
+
+.charts-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+/* Individual chart card */
+.chart-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+  flex: 1 1 350px;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.chart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.chart-card h3 {
+  margin-bottom: 12px;
+  color: #1565c0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Loading & no-data text */
+.loading-text,
+.no-data-text {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 60px;
+  user-select: none;
+}
+
+/* Animations */
+@keyframes fadeInDashboard {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .charts-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chart-card {
+    max-width: 100%;
+  }
+}
